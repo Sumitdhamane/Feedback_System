@@ -95,7 +95,7 @@ Copy code
 Below is the screen-recorded demo of the **Feedback Management System (ASP.NET MVC)**:
 
 👉 **Watch the Screen Recording:**  
-[Click here to view the demo video]([YOUR_SCREEN_RECORDING_LINK_HERE](https://drive.google.com/file/d/1FsnAqxrz6dAlrEM4BRRbd7FN_HKkVUvP/view?usp=drive_link))
+[Click here to view the demo video](https://drive.google.com/file/d/1FsnAqxrz6dAlrEM4BRRbd7FN_HKkVUvP/view?usp=drive_link)
 
 ## License
 This project is **open-source** and free to use for learning and academic purposes.
