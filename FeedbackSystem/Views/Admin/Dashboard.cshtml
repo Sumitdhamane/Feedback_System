@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<style>
+    .dashboard-card {
+        border-radius: 12px;
+        padding: 20px;
+        color: white;
+        font-weight: 600;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+    .table-container {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .teacher-table tbody tr:hover {
+        background: #f8f9fa;
+        transition: 0.2s;
+    }
+
+    .btn-report {
+        padding: 5px 12px;
+        font-weight: 500;
+    }
+</style>
+
+
+<div class="container mt-4">
+
+    <h2 class="fw-bold text-danger mb-4">Admin Dashboard</h2>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="dashboard-card bg-primary shadow-sm">
+                <h3>@ViewBag.TotalStudents</h3>
+                <p>Students</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="dashboard-card bg-success shadow-sm">
+                <h3>@ViewBag.TotalTeachers</h3>
+                <p>Teachers</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="dashboard-card bg-warning shadow-sm">
+                <h3>@ViewBag.TotalFeedbacks</h3>
+                <p>Total Feedback</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher List -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="fw-bold mb-3">Teacher List</h4>
+
+            <div class="table-container">
+                <table class="table table-bordered teacher-table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Teacher Name</th>
+                            <th>Subject</th>
+                            <th style="width: 150px;">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var t in (List<FeedbackSystem.Models.Teacher>)ViewBag.TeacherList)
+                        {
+                            <tr>
+                                <td>@t.Name</td>
+                                <td>@t.Subject</td>
+                                <td>
+                                    <a href="/Admin/Report?teacherId=@t.TeacherId"
+                                       class="btn btn-danger btn-sm btn-report">
+                                        View Report
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

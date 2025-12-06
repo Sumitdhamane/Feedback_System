@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Login";
+}
+
+<style>
+    .admin-login-card {
+        max-width: 430px;
+        margin: auto;
+        margin-top: 60px;
+        padding: 30px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .admin-header {
+        font-weight: 700;
+        color: #dc3545; /* Admin red color */
+    }
+
+    .form-control:focus {
+        border-color: #dc3545;
+        box-shadow: none;
+    }
+
+    .btn-admin {
+        background: #dc3545;
+        border: none;
+    }
+
+        .btn-admin:hover {
+            background: #bb2d3b;
+        }
+</style>
+
+<div class="admin-login-card">
+    <h2 class="text-center admin-header mb-3">Admin Login</h2>
+
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Username</label>
+            <input type="text" class="form-control" name="Username" placeholder="Enter username" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Password</label>
+            <input type="password" class="form-control" name="Password" placeholder="Enter password" required />
+        </div>
+
+        <button type="submit" class="btn btn-admin w-100 fw-bold mt-2">
+            Login
+        </button>
+
+        @if (!System.String.IsNullOrEmpty(ViewBag.Error))
+        {
+            <div class="alert alert-danger mt-3 text-center">
+                @ViewBag.Error
+            </div>
+        }
+    </form>
+</div>

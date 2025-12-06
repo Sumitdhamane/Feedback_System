@@ -1,0 +1,79 @@
+﻿@model FeedbackSystem.Models.Teacher
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Submit Feedback";
+}
+
+<style>
+    .feedback-card {
+        max-width: 550px;
+        margin: auto;
+        margin-top: 50px;
+        padding: 30px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .teacher-info {
+        font-size: 18px;
+        font-weight: 600;
+        color: #0d6efd;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .form-select:focus, .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: none;
+    }
+</style>
+
+<div class="feedback-card">
+
+    <h3 class="mb-3 text-center teacher-info">
+        Give Feedback for @Model.Name <br />
+        <span class="text-muted" style="font-size: 16px;">(@Model.Subject)</span>
+    </h3>
+
+    <form method="post" action="/Feedback/Submit">
+        <input type="hidden" name="teacherId" value="@Model.TeacherId" />
+
+        <div class="mb-3">
+            <label class="form-label">Rating (1 to 5)</label>
+            <select name="rating" class="form-select" required>
+                <option value="">Select Rating</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Comment</label>
+            <textarea name="comment" class="form-control" rows="4" placeholder="Write your feedback..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 fw-bold">
+            Submit Feedback
+        </button>
+    </form>
+
+</div>

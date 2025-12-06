@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Student Login";
+}
+
+<style>
+    .login-card {
+        max-width: 430px;
+        margin: auto;
+        margin-top: 60px;
+        padding: 30px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    .login-header {
+        font-weight: 700;
+        color: #0d6efd;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #0d6efd;
+    }
+</style>
+
+<div class="login-card">
+    <h2 class="text-center login-header mb-3">Student Login</h2>
+
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Email</label>
+            <input type="text" class="form-control" name="Email" placeholder="Enter your email" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Password</label>
+            <input type="password" class="form-control" name="Password" placeholder="Enter your password" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 fw-bold mt-2">Login</button>
+
+        @if (!System.String.IsNullOrEmpty(ViewBag.Error))
+        {
+            <div class="alert alert-danger mt-3 text-center">
+                @ViewBag.Error
+            </div>
+        }
+    </form>
+</div>

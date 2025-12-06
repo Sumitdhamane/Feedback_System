@@ -1,0 +1,65 @@
+﻿@model List<FeedbackSystem.Models.Teacher>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<style>
+    .page-title {
+        font-weight: 700;
+        color: #0d6efd;
+    }
+
+    .teacher-table {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+        .teacher-table tbody tr:hover {
+            background: #f1f5ff;
+            transition: 0.2s;
+        }
+
+    .btn-feedback {
+        padding: 6px 14px;
+    }
+</style>
+
+<div class="container mt-4">
+
+    <h2 class="page-title mb-2">Welcome Student</h2>
+    <p class="text-muted mb-4">Select a teacher below to submit your feedback.</p>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <table class="table table-bordered teacher-table">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Teacher Name</th>
+                        <th>Subject</th>
+                        <th style="width: 160px;">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var t in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@t.Name</td>
+                            <td>@t.Subject</td>
+                            <td>
+                                <a href="/Feedback/Submit?teacherId=@t.TeacherId"
+                                   class="btn btn-primary btn-sm btn-feedback">
+                                    Give Feedback
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>

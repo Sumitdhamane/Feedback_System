@@ -1,0 +1,108 @@
+﻿@model List<FeedbackSystem.Models.Feedback>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Feedback Report";
+}
+
+<style>
+    .report-header {
+        font-weight: 700;
+        color: #dc3545;
+    }
+
+    .report-card {
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        background: #fff;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .rating-badge {
+        padding: 5px 10px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+    }
+
+    .rating-1 {
+        background: #dc3545;
+    }
+
+    .rating-2 {
+        background: #fd7e14;
+    }
+
+    .rating-3 {
+        background: #ffc107;
+    }
+
+    .rating-4 {
+        background: #0d6efd;
+    }
+
+    .rating-5 {
+        background: #198754;
+    }
+</style>
+
+<div class="container mt-4">
+
+    <h2 class="report-header mb-1">Feedback Report</h2>
+    <h5 class="text-muted mb-4">@ViewBag.Teacher.Name (@ViewBag.Teacher.Subject)</h5>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="/Admin/ExportPDF?teacherId=@ViewBag.Teacher.TeacherId"
+           class="btn btn-danger fw-bold">
+            📄 Download PDF
+        </a>
+    </div>
+
+    <div class="report-card">
+
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width: 160px;">Student</th>
+                    <th style="width: 100px;">Rating</th>
+                    <th>Comment</th>
+                    <th style="width: 150px;">Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var f in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@f.Student.Name</td>
+
+                        <!-- Rating Badge -->
+                        <td>
+                            <span class="rating-badge rating-@f.Rating">
+                                @f.Rating
+                            </span>
+                        </td>
+
+                        <td>@f.Comment</td>
+                        <td>@f.Date.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
